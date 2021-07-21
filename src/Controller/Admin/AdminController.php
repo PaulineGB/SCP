@@ -42,6 +42,6 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Rapports SCP', '', Story::class);
         yield MenuItem::linkToCrud('Menaces', '', Menace::class);
         yield MenuItem::linkToCrud('Images', '', Image::class);
-        yield MenuItem::linkToCrud('Utilisateurs', '', User::class);
+        // yield MenuItem::linkToCrud('Utilisateurs', '', User::class);
     }
 }
