@@ -91,7 +91,7 @@ class UserFixtures extends Fixture
             $user = new User();
             $user->setPseudo($data['pseudo']);
             $user->setEmail($data['email']);
-            $user->setPassword($this->encoder->encodePassword($user, 'password'));
+            $user->setPassword($this->encoder->encodePassword($user, $data['password']));
             $user->setRoles([$data['role']]);
             $manager->persist($user);
             $this->addReference('user_' . $key, $user);

@@ -23,18 +23,18 @@ class FrontController extends AbstractController
     private ObjectRepository $storyRepo;
     private ObjectRepository $imageRepo;
     private ObjectRepository $menaceRepo;
-    // private ObjectRepository $userRepo;
+    private ObjectRepository $userRepo;
 
     public function __construct(
         StoryRepository $storyRepo,
         ImageRepository $imageRepo,
-        MenaceRepository $menaceRepo
-        // UserRepository $userRepo
+        MenaceRepository $menaceRepo,
+        UserRepository $userRepo
     ) {
         $this->storyRepo = $storyRepo;
         $this->imageRepo = $imageRepo;
         $this->menaceRepo = $menaceRepo;
-        // $this->userRepo = $userRepo;
+        $this->userRepo = $userRepo;
     }
 
     /**
