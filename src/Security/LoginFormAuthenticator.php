@@ -3,6 +3,8 @@
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -24,9 +26,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private UrlGeneratorInterface $urlGenerator;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, EntityManagerInterface $entityManager)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->entityManager = $entityManager;
     }
 
     public function authenticate(Request $request): PassportInterface
@@ -50,7 +53,14 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('admindarkside'));
+        $credentials = ['email' => $request->request->get('email')];
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+
+        if ($user->getRoles() == 'ROLE_ADMIN') {
+            return new RedirectResponse($this->urlGenerator->generate('admindarkside'));
+        } else {
+            return new RedirectResponse($this->urlGenerator->generate('home'));
+        }
     }
 
     protected function getLoginUrl(Request $request): string
