@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+
+/*------------------------general--------------------*/
+
+/* general style */
+
+body {
+  font-family: "Exo", sans-serif;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.navtitle {
+  font-size: 6vw;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+}
