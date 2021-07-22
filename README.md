@@ -11,6 +11,9 @@ composer install
 yarn install
 yarn encore dev
 symfony server:start
+symfony console make:mi
+symfony console d:m:m
+symfony console d:f:l
 ```
 
 ## Author
