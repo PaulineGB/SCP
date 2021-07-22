@@ -7,10 +7,9 @@
     <div class="wrapper">
         <section class="mosaic">
             <div class="mosaic-wrap">
-                {% if story.isValidated == true %}
                     {% for i in 5..9 %}
                         <div class="item material-1">
-                            <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[5].slug }) }}">{{ stories[5].title }}</a></h5>
+                            <h5 class="cardtitle text-uppercase text-center mt-3"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[5].slug }) }}">{{ stories[5].title }}</a></h5>
                             <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="original">
                                     <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[5].image }}"></image>
@@ -50,7 +49,6 @@
                             </a>
                         </div>
                     {% endfor %}
-                {% endfor %}
             </div>
         </section>
     </div>

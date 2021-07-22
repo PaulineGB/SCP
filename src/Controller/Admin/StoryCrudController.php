@@ -101,6 +101,12 @@ class StoryCrudController extends AbstractCrudController
             ->update(Crud::PAGE_DETAIL, Action::INDEX, function (Action $action) {
                 return $action->setLabel('Revenir au listing');
             })
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, function (Action $action) {
+                return $action->setLabel('Enregistrer et continuer');
+            })
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, function (Action $action) {
+                return $action->setLabel('Enregistrer');
+            })
         ;
     }
 }

@@ -12,9 +12,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 {
     private object $slugger;
 
-    public function __construct(
-        Slugify $slugify
-    ) {
+    public function __construct( Slugify $slugify)
+    {
         $this->slugger = $slugify;
     }
 

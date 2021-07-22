@@ -1,0 +1,9 @@
+:root {
+  --body-max-width: 95%;
+  --body-bg: #ccabab;
+  --font-size-base: 13px;
+  --border-radius: 0px;
+  --color-primary: #693f3f;
+  --link-color: #693f3f;
+  --favicon: url("http://scp-int.wdfiles.com/local--files/main/scp-logo-en-400.png");
+}

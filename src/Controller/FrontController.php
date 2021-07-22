@@ -18,6 +18,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Form;
 use App\Service\Slugify;
 use Doctrine\Persistence\ObjectRepository;
+use Doctrine\Manage\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
