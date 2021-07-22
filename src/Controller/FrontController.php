@@ -16,10 +16,13 @@ use App\Repository\UserRepository;
 use App\Repository\MenaceRepository;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Form;
+use App\Service\Slugify;
 use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\RouterInterface;
+use DateTime;
 
 class FrontController extends AbstractController
 {
@@ -51,23 +54,64 @@ class FrontController extends AbstractController
     }
 
     /**
+     * @Route("/page2", name="page2")
+     */
+    public function page2(): Response
+    {
+        return $this->render('front/page2.html.twig', [
+            'stories' => $this->storyRepo->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/page3", name="page3")
+     */
+    public function page3(): Response
+    {
+        return $this->render('front/page3.html.twig', [
+            'stories' => $this->storyRepo->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/scp", name="scp")
+     */
+    public function scp(): Response
+    {
+        return $this->render('front/page3.html.twig', [
+            'stories' => $this->storyRepo->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/story/new", name="story_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
+        $date = new DateTime('09/06/2020');
+        $date->format('Y-m-d');
+
         $story = new Story();
         $form = $this->createForm(StoryType::class, $story);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $slug = $slugify->generate($story->getTitle());
+            $story->setSlug($slug);
+            $story->setCreatedAt($date);
+            $story->setUser($this->getUser());
+            $entityManager->persist($story);
+            $entityManager->flush();
+
+            $story->setIsValidated(false);
             $entityManager->persist($story);
             $entityManager->flush();
 
             return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('story/new.html.twig', [
+        return $this->render('front/new.html.twig', [
             'story' => $story,
             'form' => $form->createView(),
         ]);
@@ -78,28 +122,20 @@ class FrontController extends AbstractController
      */
     public function show(Story $story): Response
     {
-        return $this->render('story/show.html.twig', [
+        return $this->render('front/show.html.twig', [
             'story' => $story,
         ]);
     }
 
     /**
-     * @Route("/story/{slug}/edit", name="story_edit", methods={"GET","POST"})
+     * @Route("/mon-compte", methods={"GET"}, name="app_profile")
      */
-    public function edit(Request $request, Story $story): Response
+    public function profile(): Response
     {
-        $form = $this->createForm(StoryType::class, $story);
-        $form->handleRequest($request);
+        $user = $this->getUser();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('story_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('story/edit.html.twig', [
-            'story' => $story,
-            'form' => $form->createView(),
+        return $this->render('security/user_profile.html.twig', [
+            'user' => $user,
         ]);
     }
 }
