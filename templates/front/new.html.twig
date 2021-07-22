@@ -3,9 +3,9 @@
 {% block title %} Nouveau rapport {% endblock %}
 
 {% block body %}
-    <div class="container text-center">
+    <div class="container">
         <h1 class="text-center mb-5 text-uppercase">| NOUVEAU RAPPORT SCP |</h1>
-        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_start(form) }}
             <div class="mb-3 text-center">TITRE</div>
             <div class="text-end">{{ form_errors(form.title) }}</div>
             <div class="mb-3">{{ form_widget(form.title) }}</div>
