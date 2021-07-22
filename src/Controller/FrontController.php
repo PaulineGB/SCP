@@ -75,11 +75,11 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/scp", name="scp")
+     * @Route("/fondation-scp", name="fondationscp")
      */
     public function scp(): Response
     {
-        return $this->render('front/page3.html.twig', [
+        return $this->render('front/scp.html.twig', [
             'stories' => $this->storyRepo->findAll(),
         ]);
     }
