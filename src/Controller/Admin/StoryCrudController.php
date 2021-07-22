@@ -64,6 +64,20 @@ class StoryCrudController extends AbstractCrudController
             );
         }
 
+        if ($pageName == Crud::PAGE_DETAIL) {
+            array_push(
+                $fields,
+                TextField::new('title', 'Titre'),
+                NumberField::new('number', 'Numéro'),
+                DateField::new('createdAt', 'Date'),
+                TextEditorField::new('content', 'Resumé'),
+                AssociationField::new('menace', 'Menaces'),
+                AssociationField::new('image', 'Images'),
+                AssociationField::new('user', 'Auteur'),
+                BooleanField::new('isValidated', 'Validation'),
+            );
+        }
+
         return $fields;
     }
 
@@ -79,6 +93,13 @@ class StoryCrudController extends AbstractCrudController
             })
             ->update(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER, function (Action $action) {
                 return $action->setLabel('Créer et ajouter un nouveau');
+            })
+            ->remove(Crud::PAGE_DETAIL, Action::DELETE)
+            ->update(Crud::PAGE_DETAIL, Action::EDIT, function (Action $action) {
+                return $action->setLabel('Modifier');
+            })
+            ->update(Crud::PAGE_DETAIL, Action::INDEX, function (Action $action) {
+                return $action->setLabel('Revenir au listing');
             })
         ;
     }
