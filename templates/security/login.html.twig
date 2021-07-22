@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Admin - Connexion{% endblock %}
+
+{% block body %}
+    <div class="container text-center">
+        <form method="post">
+            {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a></div>
+            {% endif %}
+
+            <h1 class="h3 mb-3 font-weight-normal" id="connexion">| CONNEXION |</h1>
+            <label for="floatingInput" id="email">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mt-3 mb-3 text-center" autocomplete="email" required autofocus>
+            <label for="inputPassword" id="password">Mot de passe</label>
+            <input type="password" name="password" id="inputPassword" class="form-control mt-3 mb-3 text-center" autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="btn btn btn-outline-light mt-3" type="submit" id="btn-connexion">Connexion</button>
+        </form>
+    </div>
+{% endblock %}

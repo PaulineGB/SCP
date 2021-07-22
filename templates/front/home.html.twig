@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="wrapper">
+        <section class="mosaic">
+            <div class="mosaic-wrap">
+                        {% for i in 0..4 %}
+                            <div class="item material-1">
+                                <h5 class="cardtitle text-uppercase text-center mt-3"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[4].slug }) }}">{{ stories[4].title }}</a></h5>
+                                <a href="{{ path("story_show", { slug: stories[4].slug }) }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                        <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[4].image }}"></image>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="item material-2">
+                                <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[1].slug }) }}">{{ stories[1].title }}</a></h5>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                        <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[1].image }}"></image>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="item material-3">
+                                <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[2].slug }) }}">{{ stories[2].title }}</a></h5>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                        <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[2].image }}"></image>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="item material-4">
+                                <h5 class="cardtitle text-uppercase text-center mt-5"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[3].slug }) }}">{{ stories[3].title }}</a></h5>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                        <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[3].image }}"></image>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="item material-5">
+                                <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[0].slug }) }}">{{ stories[0].title }}</a></h5>
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                        <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[0].image }}"></image>
+                                    </svg>
+                                </a>
+                            </div>
+                        {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

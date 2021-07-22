@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    <div class="mb-3 text-center">EMAIL</div>
+    <div class="text-end">{{ form_errors(form.email) }}</div>
+    <div class="mb-3">{{ form_widget(form.email) }}</div>
+    <div class="mb-3 text-center">MOT DE PASSE</div>
+    <div class="text-end">{{ form_errors(form.password) }}</div>
+    <div class="mb-3">{{ form_widget(form.password) }}</div>
+    <div class="mb-3 text-center">PSEUDO</div>
+    <div class="text-end">{{ form_errors(form.pseudo) }}</div>
+    <div class="mb-3">{{ form_widget(form.pseudo) }}</div>
+    <button class="btn btn-outline-light mt-3">{{ button_label|default('CONFIRMER') }}</button>
+{{ form_end(form) }}
