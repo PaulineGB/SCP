@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ story.title }} {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center text-uppercase mb-5">SCP-{{ story.number }} : {{ story.title }}</h1>
+        <p class="fs-6 mt-5 mb-5">{{ story.content }}</p>
+        <p class="fs-6 mt-5">Auteur du rapport : {{ story.user.pseudo }}</p>
+    </div>
+{% endblock %}

@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -25,7 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $pseudo;
+    private $email;
 
     /**
      * @ORM\Column(type="json")
@@ -41,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
+    private $pseudo;
 
     /**
      * @ORM\OneToMany(targetEntity=Story::class, mappedBy="user")
@@ -58,14 +59,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getPseudo(): ?string
+    public function getEmail(): ?string
     {
-        return $this->pseudo;
+        return $this->email;
     }
 
-    public function setPseudo(string $pseudo): self
+    public function setEmail(string $email): self
     {
-        $this->pseudo = $pseudo;
+        $this->email = $email;
 
         return $this;
     }
@@ -77,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->pseudo;
+        return (string) $this->email;
     }
 
     /**
@@ -85,7 +86,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->pseudo;
+        return (string) $this->email;
     }
 
     /**
@@ -142,14 +143,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getEmail(): ?string
+    public function getPseudo(): ?string
     {
-        return $this->email;
+        return $this->pseudo;
     }
 
-    public function setEmail(string $email): self
+    public function setPseudo(string $pseudo): self
     {
-        $this->email = $email;
+        $this->pseudo = $pseudo;
 
         return $this;
     }
@@ -183,4 +184,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->pseudo;
+    }
+
 }

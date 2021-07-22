@@ -18,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdminController extends AbstractDashboardController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admindarkside", name="admindarkside")
      */
     public function index(): Response
     {
@@ -27,10 +27,15 @@ class AdminController extends AbstractDashboardController
         return $this->redirect($routeBuilder->setController(StoryCrudController::class)->generateUrl());
     }
 
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/admin.css');
+    }
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('| SPC |');
+            ->setTitle('<img src="http://scp-wiki.wdfiles.com/local--files/unfounded-hub/UnFounded.png" style="width:25%;"> FONDATION SCP');
     }
 
     public function configureMenuItems(): iterable
@@ -42,6 +47,6 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Rapports SCP', '', Story::class);
         yield MenuItem::linkToCrud('Menaces', '', Menace::class);
         yield MenuItem::linkToCrud('Images', '', Image::class);
-        yield MenuItem::linkToCrud('Utilisateurs', '', User::class);
+        yield MenuItem::linkToCrud('Accréditations', '', User::class);
     }
 }

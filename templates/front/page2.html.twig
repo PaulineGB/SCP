@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="wrapper">
+        <section class="mosaic">
+            <div class="mosaic-wrap">
+                    {% for i in 5..9 %}
+                        <div class="item material-1">
+                            <h5 class="cardtitle text-uppercase text-center mt-3"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[5].slug }) }}">{{ stories[5].title }}</a></h5>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                    <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[5].image }}"></image>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="item material-2">
+                            <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[6].slug }) }}">{{ stories[6].title }}</a></h5>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                    <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[6].image }}"></image>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="item material-3">
+                            <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[7].slug }) }}">{{ stories[7].title }}</a></h5>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                    <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[7].image }}"></image>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="item material-4">
+                            <h5 class="cardtitle text-uppercase text-center mt-5"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[8].slug }) }}">{{ stories[8].title }}</a></h5>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                    <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[8].image }}"></image>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="item material-5">
+                            <h5 class="cardtitle text-uppercase text-center"><a class="text-reset text-decoration-none" href="{{ path("story_show", { slug: stories[9].slug }) }}">{{ stories[9].title }}</a></h5>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="original">
+                                    <image width="100%" height="100%" preserveaspectratio="xMidYMid slice" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ stories[9].image }}"></image>
+                                </svg>
+                            </a>
+                        </div>
+                    {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

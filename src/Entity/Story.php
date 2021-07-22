@@ -50,12 +50,6 @@ class Story
     private $menace;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stories")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Image::class, inversedBy="stories")
      */
     private $image;
@@ -64,6 +58,12 @@ class Story
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -159,18 +159,6 @@ class Story
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getImage(): ?Image
     {
         return $this->image;
@@ -191,6 +179,18 @@ class Story
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
